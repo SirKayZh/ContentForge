@@ -45,7 +45,8 @@
 ```
 [Step A1] 将 article.md 上传到 NotebookLM
   notebooklm create "<文章标题>"
-  notebooklm source add article.md --title "<文章标题>"
+  notebooklm source add-text <notebookId> "<文章标题>" --file article.md
+  ⚠️ 注意：add-file 命令有 HTTP 400 上传限制，请用 add-text --file 替代
 
 [Step A2] 生成 Audio Overview（播客）
   notebooklm generate audio
