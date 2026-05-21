@@ -1,12 +1,12 @@
 ---
 name: neirong-gongfang
+description_zh: 内容工坊
+description_en: ContentForge
 description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等中文内容一键丢进，生成播客、PPT、思维导图、深度报告。国内特化版，预置 5 大杀手场景模板，与 IMA 笔记、飞书文档无缝联动。Use when 用户说「丢进 NotebookLM」「转成播客」「公众号转播客」「PDF 做思维导图」「文章生成 PPT」等。
-description_zh: NotebookLM 中文场景包（公众号/小宇宙/知识星球/财新/视频号）
-description_en: NotebookLM China Scenario Pack (WeChat / Xiaoyuzhou / Caixin / Video)
 disable: false
 agent_created: true
 license: MIT
-version: 0.3.0
+version: 0.4.0
 ---
 
 # 内容工坊
