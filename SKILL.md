@@ -34,7 +34,12 @@ version: 0.4.0
                       ↘【降级】本地 LLM（C 方案）→ 4. 落地（IMA / 飞书 / 本地）
 ```
 
-**NotebookLM 可用性检测**：每次执行 Step 3 前先运行 `notebooklm status`，可用则走 Notebooks路径；失败则自动降级到 C 方案（本地 LLM 直接生成），不影响产出。
+**NotebookLM 可用性检测**：每次执行 Step 3 前先运行 `notebooklm status`，可用则走 NotebookLM路径；失败则自动降级到 C 方案（本地 LLM 直接生成），不影响产出。
+
+> ⚠️ **2026-05-21 重要更新**：CLI `notebooklm generate` 报 HTTP 400（API 版本问题），**生成环节改用 Playwright 浏览器自动化**：
+> - CLI 仍然用于：`login` / `list` / `create` / `source add-text`（上传功能正常）
+> - 生成改用：`scripts/notebooklm-playwright.js <notebookId> <audio|video|report|mindmap>`
+> - 脚本通过 Playwright 操控浏览器，点击"音频概览/视频概览/报告/思维导图"按钮，等生成完成后截图结果
 
 匹配场景 → 读 `scenarios/0X-xxx.md` → 按 SOP 执行 → 失败走 `references/troubleshooting.md` 降级。
 

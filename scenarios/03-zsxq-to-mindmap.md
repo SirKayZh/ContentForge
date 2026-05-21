@@ -57,10 +57,9 @@
   └─ 等待索引
 
 [Step A2] 调用 NotebookLM Mind Map 工具
-  ├─ `notebooklm generate mind-map`
-  ├─ `notebooklm artifact wait <task_id>`
-  ├─ 提取 JSON 树结构
-  └─ 输出：raw_mindmap.json
+  node scripts/notebooklm-playwright.js <notebookId> mindmap [outputDir]
+  # 脚本自动：打开笔记本 → 点击"思维导图" → 等待生成完成
+  # 输出：截图结果到 outputDir/mindmap_result.png
 
 [Step A3] 转换为多格式
   ├─ JSON → Markdown 大纲（`-` 缩进）

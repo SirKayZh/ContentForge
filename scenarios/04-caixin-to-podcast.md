@@ -90,9 +90,9 @@ Priority 5: 用户手动复制粘贴
   └─ 等待索引
 
 [Step A3] 生成 Audio Overview（核心）
-  ├─ `notebooklm generate audio`
-  ├─ 自定义 prompt（控制风格 / 时长）
-  └─ 等待生成（通常 3-8 分钟）
+  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
+  # 可选：添加自定义 prompt 文本
 
 [Step A4] 下载 mp3 + transcript
   ├─ 自动下载到 ~/Downloads/neirong-gongfang/caixin-podcast/<日期>/

@@ -94,10 +94,8 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
   └─ 等待索引
 
 [Step A3] 生成 Slide Deck
-  ├─ `notebooklm generate slide-deck`
-  ├─ `notebooklm artifact wait <task_id>`
-  ├─ `notebooklm download slide-deck ./deck.pdf`
-  └─ 输出：deck.pdf
+  node scripts/notebooklm-playwright.js <notebookId> video [outputDir]
+  # 脚本自动：打开笔记本 → 点击"演示文稿"标签 → 等待生成完成
 
 [Step A4] 选配封面图（关键帧匹配）
   ├─ 每页根据时间戳从 frames/ 取最接近的关键帧

@@ -40,7 +40,7 @@
   └─ 不可用 → 降级走 C 方案（本地 LLM）
 ```
 
-### 路径 A：NotebookLM 路径（推荐）
+> ⚠️ **2026-05-21 更新**：CLI `notebooklm generate` 报 HTTP 400，改用 **Playwright 浏览器自动化**触发生成。
 
 ```
 [Step A1] 将 article.md 上传到 NotebookLM
@@ -49,16 +49,12 @@
   ⚠️ 注意：add-file 命令有 HTTP 400 上传限制，请用 add-text --file 替代
 
 [Step A2] 生成 Audio Overview（播客）
-  notebooklm generate audio
-  notebooklm artifact wait <task_id>
-  notebooklm download audio ./output.mp3
+  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
 
 [Step A3] 生成深度报告
-  notebooklm generate report
-  notebooklm artifact wait <task_id>
-  notebooklm download report ./report.md
-
-[Step A4] 落地 → IMA / 飞书
+  node scripts/notebooklm-playwright.js <notebookId> report [outputDir]
+  # 点击"报告"标签 → 生成 → 等待完成
 ```
 
 ### 路径 B：C 方案（降级 fallback）

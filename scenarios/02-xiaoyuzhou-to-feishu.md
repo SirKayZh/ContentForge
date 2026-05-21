@@ -62,9 +62,8 @@
   notebooklm source add /tmp/podcast.txt --title "<单集标题>"
 
 [Step A3] 生成 Audio Overview
-  notebooklm generate audio
-  notebooklm artifact wait <task_id>
-  notebooklm download audio ./podcast.mp3
+  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
 
 [Step A4] 落地同上（飞书 / IMA）
 ```
