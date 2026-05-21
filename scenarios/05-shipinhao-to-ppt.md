@@ -154,6 +154,46 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
 
 ## 渲染选择
 
+### Skill 方案对比（2026-05-21 实测）
+
+| 方案 | Skill | 设计质量 | 易用性 | 适用场景 |
+|---|---|---|---|---|
+| **方案1（推荐）** | `anthropics/skills@pptx` | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | 需要专业设计感、自定义布局 |
+| **方案2（快速）** | `aktsmm/powerpoint-automation` | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 标准格式、快速出稿、批量生成 |
+| **方案3（极简）** | Marp / Slidev | ⭐⭐ | ⭐⭐⭐⭐ | 程序员、版本化需求 |
+
+> 实测详情 → `~/Downloads/notebooklm-cn/pptx-skill-comparison/2026-05-21/comparison-report.md`
+>
+> 其他候选：`supercent-io/pptx-builder`（私有仓库，安装失败）、`googleworkspace/cli@presentation`（仅创建Google Slides，不适用本场景）
+
+### 方案1：anthropics/skills@pptx（html2pptx）
+
+**技术路径**：HTML slides → html2pptx.js（Playwright渲染 + PptxGenJS生成）
+
+```bash
+# 1. 生成HTML slides（每页一个HTML文件）
+# 2. 运行转换脚本
+node gen.js  # 内部调用 html2pptx(slide.html, pptx)
+```
+
+**优点**：设计质量最高，完全自定义布局，支持图表/图片/图标
+**缺点**：需手写HTML+JS，调试周期较长
+**依赖**：Node.js + Playwright + Sharp（全局已安装）
+
+### 方案2：aktsmm/powerpoint-automation（content.json + 模板）
+
+**技术路径**：content.json → template.pptx → create_from_template.py
+
+```bash
+python scripts/create_from_template.py template.pptx content.json output.pptx
+```
+
+**优点**：最易用（只需JSON），自动布局匹配，有验证脚本
+**缺点**：设计质量依赖模板，可定制性有限
+**依赖**：Python + python-pptx
+
+### 输出格式
+
 | 格式 | 优点 | 适合 |
 |---|---|---|
 | **PDF** | 跨平台，立即可用 | 临时分享 |
@@ -167,7 +207,8 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
 | 视频号无法录屏（手机用户） | 让用户上传视频文件 |
 | Whisper 转写不准（方言/口音） | 询问是否切到 Get笔记 API（更鲁棒） |
 | NotebookLM 生成大纲超长 | 拆 source（每 30 分钟一段），分页生成 |
-| python-pptx 渲染失败 | fallback 到 Marp md |
+| html2pptx 渲染失败 | fallback 到 aktsmm/powerpoint-automation（content.json + 模板） |
+| 模板渲染失败 | fallback 到 Marp md |
 
 ## 输出物示例
 
