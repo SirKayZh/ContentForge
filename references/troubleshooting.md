@@ -57,6 +57,37 @@ playwright install chromium
 
 ## 生成阶段
 
+### PPT 渲染质量差 / 失败
+
+| 现象 | 解决 |
+|---|---|
+| python-pptx 生成单调（纯文字框） | 改用 `anthropics/skills@pptx` 的 `html2pptx` 工作流 |
+| html2pptx 渲染失败（Playwright 超时） | fallback 到 `aktsmm/powerpoint-automation`（content.json + 模板） |
+| 模板填充后格式错位 | 检查 content.json 字段是否与模板 placeholder 匹配 |
+| 输出文件损坏（0 KB） | 检查 gen.js 是否正常 exit，用 `node --check gen.js` 验证语法 |
+
+### PPT Skill 安装失败
+
+| 错误 | 解决 |
+|---|---|
+| supercent-io 仓库 404 / 私有 | 改用 `igorwarzocha/powerpoint`（html2pptx 方案）或 `aktsmm/powerpoint-automation` |
+| googleworkspace/cli 只能创建 Google Slides | 不适用于本地 PPT 场景，跳过 |
+
+### html2pptx 依赖问题
+
+```bash
+# 检查 Playwright 是否正常
+node -e "require('playwright')" && echo "✅ playwright ok"
+
+# 检查 Sharp（html2pptx 内部依赖）
+node -e "require('sharp')" && echo "✅ sharp ok"
+
+# 全局安装（如果缺失）
+npm install -g playwright @playwright/test
+npx playwright install chromium
+npm install -g sharp
+```
+
 ### NotebookLM Audio Overview 报错
 
 | 现象 | 解决 |
@@ -95,6 +126,69 @@ def trim(node, max_depth=4, current=0):
 
 - App 权限不足 → 飞书后台勾选 docs / drive 权限
 - 路径不存在 → 先创建目标文件夹
+
+## PPT 生成工具链（场景 5 专项）
+
+> 详见 `scenarios/05-shipinhao-to-ppt.md` 的「渲染选择」章节。
+
+| 工具 | 用途 | 调用方式 |
+|---|---|---|
+| `anthropics/skills@pptx` | 专业设计 PPT | `html2pptx.js`（Playwright + PptxGenJS） |
+| `aktsmm/powerpoint-automation` | 快速模板 PPT | `python create_from_template.py template.pptx content.json output.pptx` |
+| `igorwarzocha/powerpoint` | html2pptx 备选 | 同 html2pptx.js 路径 |
+
+### 快速选择决策树
+
+```
+PPT 场景？
+├─ 需要专业设计感、自定义布局
+│   → anthropics/skills@pptx（html2pptx）
+│   → 依赖：Node.js + Playwright + Sharp（全局已装）
+│
+├─ 标准格式、快速出稿、批量生成
+│   → aktsmm/powerpoint-automation（content.json + 模板）
+│   → 依赖：Python + python-pptx（已装）
+│
+└─ 程序员、版本化管理
+    → Marp / Slidev（Markdown → PPTX/PDF）
+```
+
+### content.json 格式（aktsmm 用）
+
+```json
+{
+  "title": "PPT 标题",
+  "slides": [
+    {
+      "title": "第 1 页标题",
+      "content": ["要点 1", "要点 2", "要点 3"],
+      "speaker_notes": "讲者备注"
+    }
+  ]
+}
+```
+
+### html2pptx 调试技巧
+
+```bash
+# 1. 检查 HTML 是否语法正确
+node --check gen.js
+
+# 2. 单页测试渲染
+node -e "
+const { chromium } = require('playwright');
+(async () => {
+  const browser = await chromium.launch();
+  const page = await browser.newPage();
+  await page.goto('file://' + process.cwd() + '/slides/slide01.html');
+  await page.screenshot({ path: 'debug.png' });
+  await browser.close();
+})();
+"
+
+# 3. 检查 pptx 文件是否可打开
+python3 -c "from pptx import Presentation; prs = Presentation('output.pptx'); print(f'OK: {len(prs.slides)} slides')"
+```
 
 ## 网络问题
 
