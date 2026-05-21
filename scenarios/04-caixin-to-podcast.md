@@ -95,7 +95,7 @@ Priority 5: 用户手动复制粘贴
   └─ 等待生成（通常 3-8 分钟）
 
 [Step A4] 下载 mp3 + transcript
-  ├─ 自动下载到 ~/Downloads/notebooklm-cn/caixin-podcast/<日期>/
+  ├─ 自动下载到 ~/Downloads/neirong-gongfang/caixin-podcast/<日期>/
   ├─ 文件命名：<日期>-<标题截短>.mp3
   └─ 同目录附 transcript.txt
 
@@ -160,7 +160,7 @@ Priority 5: 用户手动复制粘贴
 ## 输出物示例
 
 ```
-~/Downloads/notebooklm-cn/caixin-podcast/2026-05-20/
+~/Downloads/neirong-gongfang/caixin-podcast/2026-05-20/
 ├── article.md
 ├── meta.json
 ├── 2026-05-20-中国出口结构调整.mp3   # 14:32

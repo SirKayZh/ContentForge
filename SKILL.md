@@ -1,17 +1,17 @@
 ---
-name: anything-to-notebooklm-cn
-description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等中文内容一键丢进 Google NotebookLM，自动生成播客、PPT、思维导图、深度报告。国内特化版（无需上游），预置 5 大杀手场景模板，与 IMA 笔记、飞书文档无缝联动。Use when 用户说「丢进 NotebookLM」「转成播客」「公众号转播客」「PDF 做思维导图」「文章生成 PPT」等。
+name: neirong-gongfang
+description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等中文内容一键丢进，生成播客、PPT、思维导图、深度报告。国内特化版，预置 5 大杀手场景模板，与 IMA 笔记、飞书文档无缝联动。Use when 用户说「丢进 NotebookLM」「转成播客」「公众号转播客」「PDF 做思维导图」「文章生成 PPT」等。
 description_zh: NotebookLM 中文场景包（公众号/小宇宙/知识星球/财新/视频号）
 description_en: NotebookLM China Scenario Pack (WeChat / Xiaoyuzhou / Caixin / Video)
 disable: false
 agent_created: true
 license: MIT
-version: 0.2.0
+version: 0.3.0
 ---
 
-# anything-to-notebooklm-cn
+# 内容工坊
 
-把任何中文内容丢进 NotebookLM，生成播客 / PPT / 思维导图 / 深度分析。
+把任何中文内容丢进，生成播客 / PPT / 思维导图 / 深度分析。
 
 ## 触发词
 
@@ -102,4 +102,4 @@ version: 0.2.0
 
 ## License & Credits
 
-MIT · 上游：[joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) · 适配：[SirKayZh](https://github.com/SirKayZh/anything-to-notebooklm-cn)
+MIT · 原创：[SirKayZh/neirong-gongfang](https://github.com/SirKayZh/neirong-gongfang) · 致谢上游：[joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)

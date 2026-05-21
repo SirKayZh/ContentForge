@@ -90,7 +90,7 @@
     → 调用 lark-master 创建 docx
     → 归档到用户指定的目录（首次使用通过 AskUserQuestion 询问）
   if 目标 == 本地:
-    → 写到 ~/Downloads/notebooklm-cn/wechat-deep/<日期>/
+    → 写到 ~/Downloads/neirong-gongfang/wechat-deep/<日期>/
 ```
 
 ## 抓取策略详细对比
@@ -153,7 +153,7 @@ Q12. 3 年后回看，文章哪部分最可能被证明错误 / 过时？
 ## 输出物示例
 
 ```
-~/Downloads/notebooklm-cn/wechat-deep/2026-05-20/
+~/Downloads/neirong-gongfang/wechat-deep/2026-05-20/
 ├── original.md              # 抓取的原文
 ├── analysis.json            # 12 问 12 答结构化数据
 ├── report.md                # 给人读的 Markdown 报告

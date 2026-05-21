@@ -52,7 +52,7 @@ P3: 用户复制粘贴文本
 
 ## 配置文件示例
 
-把这套优先级写到 `~/.workbuddy/skills/anything-to-notebooklm-cn/scripts/paywall-priority.json`：
+把这套优先级写到 `~/.workbuddy/skills/neirong-gongfang/scripts/paywall-priority.json`：
 
 ```json
 {

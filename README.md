@@ -1,8 +1,8 @@
-# anything-to-notebooklm-cn
+# 内容工坊
 
-> 把任何中文内容（公众号/小宇宙/知识星球/财新/视频号）丢进 Google NotebookLM，生成播客、PPT、思维导图、深度分析。
+> 把任何中文内容（公众号/小宇宙/知识星球/财新/视频号）丢进，生成播客、PPT、思维导图、深度分析。
 
-**这是 [joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)（MIT，4.1k stars）的 WorkBuddy 国内化适配版**，鸣谢原作者。
+**这是原创作品**，基于对上游 [joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm) 的理解重构，国内特化，独立使用。
 
 ---
 
@@ -32,8 +32,8 @@
 ```bash
 mkdir -p ~/.workbuddy/skills/
 cd ~/.workbuddy/skills/
-git clone https://github.com/SirKayZh/anything-to-notebooklm-cn
-cd anything-to-notebooklm-cn
+git clone https://github.com/SirKayZh/neirong-gongfang
+cd neirong-gongfang
 ```
 
 ### 2. 安装核心依赖
@@ -77,7 +77,7 @@ https://mp.weixin.qq.com/s/Hu3LHuxqD4xaKEjox4lXyg
 ## 文档地图
 
 ```
-anything-to-notebooklm-cn/          # 独立 Skill，不需要上游
+neirong-gongfang/          # 独立 Skill
 ├── SKILL.md                      # AI 入口（触发词 + 工作流）
 ├── README.md                     # 你正在看的文件
 ├── references/
@@ -102,8 +102,7 @@ anything-to-notebooklm-cn/          # 独立 Skill，不需要上游
 ## License & Credits
 
 - **License**: MIT
-- **上游**: [joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)
-- **本适配**: [SirKayZh/anything-to-notebooklm-cn](https://github.com/SirKayZh/anything-to-notebooklm-cn)
-- **致谢**: 上游作者 joeseesun 提供了核心抓取与 NotebookLM 上传能力
+- **本作品**: [SirKayZh/neirong-gongfang](https://github.com/SirKayZh/neirong-gongfang)
+- **致谢上游**: [joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)（MIT）
 
 > 本 Skill 仅限个人学习研究使用，请尊重原作者版权，并支持优质媒体订阅。

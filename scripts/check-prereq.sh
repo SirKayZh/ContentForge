@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# anything-to-notebooklm-cn 前置依赖检查
+# 内容工坊 前置依赖检查
 # 用法: bash check-prereq.sh
 #
 set -e
@@ -11,7 +11,7 @@ ok()   { echo -e "${GREEN}✅ $1${NC}"; }
 warn() { echo -e "${YELLOW}⚠️  $1${NC}"; }
 fail() { echo -e "${RED}❌ $1${NC}"; }
 
-echo "anything-to-notebooklm-cn 环境检查"
+echo "内容工坊 环境检查"
 echo "===================================="
 
 # 1. Python

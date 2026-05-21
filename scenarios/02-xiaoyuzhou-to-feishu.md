@@ -149,7 +149,7 @@ AI 内部循环：抓 RSS 列表 → 取最近 5 个 episode_url → 各自走�
 ## 输出物示例
 
 ```
-~/Downloads/notebooklm-cn/podcast-summary/2026-05-20/
+~/Downloads/neirong-gongfang/podcast-summary/2026-05-20/
 ├── meta.json
 ├── transcript.json          # 完整逐字稿
 ├── transcript.txt           # 纯文本版（喂给 NotebookLM）

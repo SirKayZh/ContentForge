@@ -120,7 +120,7 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
 ```
 
 [Step 4] 输出
-  └─ ~/Downloads/notebooklm-cn/video-to-ppt/<日期>/
+  └─ ~/Downloads/neirong-gongfang/video-to-ppt/<日期>/
 ```
 
 ## PPT 大纲生成 Prompt
@@ -162,7 +162,7 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
 | **方案2（快速）** | `aktsmm/powerpoint-automation` | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | 标准格式、快速出稿、批量生成 |
 | **方案3（极简）** | Marp / Slidev | ⭐⭐ | ⭐⭐⭐⭐ | 程序员、版本化需求 |
 
-> 实测详情 → `~/Downloads/notebooklm-cn/pptx-skill-comparison/2026-05-21/comparison-report.md`
+> 实测详情 → `~/Downloads/neirong-gongfang/pptx-skill-comparison/2026-05-21/comparison-report.md`
 >
 > 其他候选：`supercent-io/pptx-builder`（私有仓库，安装失败）、`googleworkspace/cli@presentation`（仅创建Google Slides，不适用本场景）
 
@@ -213,7 +213,7 @@ python scripts/create_from_template.py template.pptx content.json output.pptx
 ## 输出物示例
 
 ```
-~/Downloads/notebooklm-cn/video-to-ppt/2026-05-20/
+~/Downloads/neirong-gongfang/video-to-ppt/2026-05-20/
 ├── video.mp4               # 原视频缓存
 ├── audio.m4a
 ├── transcript.txt

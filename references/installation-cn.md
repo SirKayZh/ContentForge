@@ -1,6 +1,6 @@
 # 国内化安装指引
 
-> anything-to-notebooklm-cn 是独立 Skill，**不需要安装上游 qiaomu**。
+> 内容工坊是独立 Skill，**不需要安装上游**。
 > 所需工具已内置或通过 pip/npm 安装，无需额外注册 MCP。
 
 ## 0. 环境要求
@@ -13,14 +13,14 @@ git --version       # 任意
 
 ## 1. 安装 Skill 文件
 
-Skill 由 AI 自动安装到 `~/.workbuddy/skills/anything-to-notebooklm-cn/`，
+Skill 由 AI 自动安装到 `~/.workbuddy/skills/neirong-gongfang/`，
 通常通过 Skill Hub 一键装或 git clone：
 
 ```bash
 mkdir -p ~/.workbuddy/skills/
 cd ~/.workbuddy/skills/
-git clone https://github.com/SirKayZh/anything-to-notebooklm-cn
-cd anything-to-notebooklm-cn
+git clone https://github.com/SirKayZh/neirong-gongfang
+cd neirong-gongfang
 ```
 
 ## 2. 安装核心依赖
@@ -72,7 +72,7 @@ notebooklm status
 ## 5. 环境检查
 
 ```bash
-cd ~/.workbuddy/skills/anything-to-notebooklm-cn
+cd ~/.workbuddy/skills/neirong-gongfang
 bash scripts/check-prereq.sh
 ```
 
@@ -98,6 +98,6 @@ source ~/.zshrc
 ## 卸载
 
 ```bash
-rm -rf ~/.workbuddy/skills/anything-to-notebooklm-cn
+rm -rf ~/.workbuddy/skills/neirong-gongfang
 # 协同 Skill 如不再需要，另删 lark-master / ima-skill
 ```
