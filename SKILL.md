@@ -1,13 +1,12 @@
 ---
 name: anything-to-notebooklm-cn
-description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等中文内容一键丢进 Google NotebookLM，自动生成播客、PPT、思维导图、深度报告。基于上游 joeseesun/qiaomu-anything-to-notebooklm 的 WorkBuddy 国内化适配版，预置 5 大杀手场景模板，与 IMA 笔记、飞书文档无缝联动。Use when 用户说「丢进 NotebookLM」「转成播客」「公众号转播客」「PDF 做思维导图」「文章生成 PPT」等。
+description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等中文内容一键丢进 Google NotebookLM，自动生成播客、PPT、思维导图、深度报告。国内特化版（无需上游），预置 5 大杀手场景模板，与 IMA 笔记、飞书文档无缝联动。Use when 用户说「丢进 NotebookLM」「转成播客」「公众号转播客」「PDF 做思维导图」「文章生成 PPT」等。
 description_zh: NotebookLM 中文场景包（公众号/小宇宙/知识星球/财新/视频号）
 description_en: NotebookLM China Scenario Pack (WeChat / Xiaoyuzhou / Caixin / Video)
 disable: false
 agent_created: true
-upstream: https://github.com/joeseesun/qiaomu-anything-to-notebooklm
 license: MIT
-version: 0.1.0
+version: 0.2.0
 ---
 
 # anything-to-notebooklm-cn
@@ -89,10 +88,11 @@ version: 0.1.0
 |---|---|
 | **调用任何工具前** | `references/tool-map.md` 🔴 必读 |
 | **写输出前** | `references/honesty-rules.md` 🔴 必读 |
-| 用户首次使用 | `references/installation-cn.md` |
-| 网络问题 | `references/china-network.md` |
-| 抓不到内容 | `references/paywall-strategies-cn.md` |
-| 任意环节报错 | `references/troubleshooting.md` |
+| **首次安装** | `references/installation-cn.md` |
+| **网络不通** | `references/china-network.md` |
+| **抓不到内容** | `references/paywall-strategies-cn.md` |
+| **任意环节报错** | `references/troubleshooting.md` |
+| **PPT 生成问题** | `references/troubleshooting.md` →「PPT 生成工具链」章节 |
 
 ## 协同
 

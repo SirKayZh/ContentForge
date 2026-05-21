@@ -19,75 +19,72 @@ if command -v python3 >/dev/null 2>&1; then
   PYV=$(python3 --version | awk '{print $2}')
   ok "Python $PYV"
 else
-  fail "未找到 python3"; exit 1
+  fail "未找到 python3（需要 Python 3.9+）"
+  exit 1
 fi
 
-# 2. Node
+# 2. Node（场景5 PPT 生成需要）
 if command -v node >/dev/null 2>&1; then
   NODEV=$(node --version)
   ok "Node $NODEV"
 else
-  warn "未找到 node（部分场景可能依赖）"
+  warn "未找到 node（场景5 html2pptx 需要 Node.js）"
 fi
 
-# 3. 上游 Skill
-UPSTREAM="$HOME/.workbuddy/skills/qiaomu-anything-to-notebooklm"
-if [[ -d "$UPSTREAM" ]]; then
-  ok "上游 Skill 已 clone: $UPSTREAM"
+# 3. yt-dlp（视频下载）
+if command -v yt-dlp >/dev/null 2>&1 || python3 -m yt_dlp --version >/dev/null 2>&1; then
+  ok "yt-dlp 可用"
 else
-  fail "上游未安装。请执行："
-  echo "    cd ~/.workbuddy/skills/ && git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm"
+  warn "yt-dlp 未安装（场景5视频下载需要：pip3 install yt-dlp）"
 fi
 
-# 4. 上游 install.sh 是否跑过（看 venv / requirements 标志）
-if [[ -f "$UPSTREAM/check_env.py" ]]; then
-  ok "上游 check_env.py 存在，可手动跑：python3 $UPSTREAM/check_env.py"
-fi
-
-# 5. mcp.json 注册
-MCP_JSON="$HOME/.workbuddy/mcp.json"
-if [[ -f "$MCP_JSON" ]]; then
-  if grep -q "wexin-read" "$MCP_JSON"; then
-    ok "wexin-read MCP 已注册"
-  else
-    warn "wexin-read MCP 未注册到 ~/.workbuddy/mcp.json"
-  fi
-  if grep -q "feishu-read" "$MCP_JSON"; then
-    ok "feishu-read MCP 已注册"
-  else
-    warn "feishu-read MCP 未注册"
-  fi
+# 4. ffmpeg（音轨提取）
+if command -v ffmpeg >/dev/null 2>&1; then
+  ok "ffmpeg 可用"
 else
-  warn "$MCP_JSON 不存在"
+  warn "ffmpeg 未安装（音轨提取需要）"
 fi
 
-# 6. 网络
+# 5. 网络（按 Ctrl+C 跳过）
 echo ""
-echo "网络检查（按 Ctrl+C 跳过）"
+echo "网络检查（5s 测一次，按 Ctrl+C 中途跳过）"
 echo "------------------------------"
 if curl -s -m 5 -o /dev/null -w "%{http_code}" https://www.google.com | grep -q "200\|301\|302"; then
-  ok "Google 可达"
+  ok "Google 可达（NotebookLM 登录需要）"
 else
-  warn "Google 不可达 → 需配代理，见 china-network.md"
+  warn "Google 不可达 → 需配代理，见 references/china-network.md"
 fi
 
 if curl -s -m 5 -o /dev/null -w "%{http_code}" https://notebooklm.google.com | grep -q "200\|301\|302"; then
   ok "NotebookLM 可达"
 else
-  warn "NotebookLM 不可达"
+  warn "NotebookLM 不可达（需海外代理，见 references/china-network.md）"
 fi
 
 if curl -s -m 5 -o /dev/null -w "%{http_code}" https://mp.weixin.qq.com | grep -q "200\|301\|302"; then
   ok "微信公众号可达"
 else
-  warn "微信公众号不可达（可能代理把国内流量也劫持了）"
+  warn "微信公众号不可达（可能代理劫持了国内流量）"
+fi
+
+# 6. Playwright（场景5 html2pptx）
+if node -e "require('playwright')" 2>/dev/null; then
+  ok "Playwright（Node.js）可用"
+else
+  warn "Playwright（Node.js）未安装（场景5 html2pptx 需要）"
+fi
+
+if python3 -c "from playwright import sync_api" 2>/dev/null; then
+  ok "Playwright（Python）可用"
+else
+  warn "Playwright（Python）未安装"
 fi
 
 # 7. 可选：Get笔记 API
 if [[ -n "$GETNOTE_API_KEY" ]]; then
-  ok "GETNOTE_API_KEY 已配置（播客转写场景可用）"
+  ok "GETNOTE_API_KEY 已配置（播客/视频转写可用）"
 else
-  warn "GETNOTE_API_KEY 未设置（仅播客/视频转写需要）"
+  warn "GETNOTE_API_KEY 未设置（仅播客/视频转写需要，可选）"
 fi
 
 echo ""

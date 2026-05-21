@@ -139,14 +139,16 @@ ima-skill:notes / ima-skill:knowledge-base
 
 ---
 
-## 5. wexin-read MCP（上游兜底）
+## 5. wexin-read MCP（可选上游组件）
 
 | 项 | 内容 |
 |---|---|
 | **能力** | Playwright 模拟浏览器抓微信公众号 |
-| **触发** | **WebFetch 抓不全时**才用（实测大多数场景 WebFetch 已够） |
+| **触发** | WebFetch 抓不全时兜底（实测大多数场景 WebFetch 已够） |
 | **依赖** | Python + Playwright + Chromium |
-| **来源** | joeseesun/qiaomu-anything-to-notebooklm 仓库 |
+| **需要安装上游** | 是（如不使用可跳过，不影响本 Skill 基本功能） |
+
+> ⚠️ 本 Skill 主流程**不需要** wexin-read MCP，WebFetch 内置抓取已覆盖场景 1/2/4/5 的抓取需求。安装上游仅在高级用户需要粉丝内容抓取时才有必要。
 
 ### 何时必须用
 

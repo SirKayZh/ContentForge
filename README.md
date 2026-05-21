@@ -27,47 +27,36 @@
 
 ## 快速开始
 
-### 1. 安装上游
+### 1. 安装本 Skill
 
 ```bash
 mkdir -p ~/.workbuddy/skills/
 cd ~/.workbuddy/skills/
-git clone https://github.com/joeseesun/qiaomu-anything-to-notebooklm
-cd qiaomu-anything-to-notebooklm
-./install.sh
+git clone https://github.com/SirKayZh/anything-to-notebooklm-cn
+cd anything-to-notebooklm-cn
 ```
 
-### 2. 注册 MCP（编辑 `~/.workbuddy/mcp.json`）
-
-```json
-{
-  "mcpServers": {
-    "wexin-read": {
-      "command": "python3",
-      "args": ["/Users/<你>/.workbuddy/skills/qiaomu-anything-to-notebooklm/wexin-read-mcp/src/server.py"]
-    },
-    "feishu-read": {
-      "command": "python3",
-      "args": ["/Users/<你>/.workbuddy/skills/qiaomu-anything-to-notebooklm/feishu-read-mcp/src/server.py"]
-    }
-  }
-}
-```
-
-重启 WorkBuddy → 连接器管理 → Trust 新 MCP。
-
-### 3. 登录 NotebookLM
+### 2. 安装核心依赖
 
 ```bash
-python3 -m notebooklm login
+pip3 install yt-dlp          # 视频下载
+npm install                  # 场景5 html2pptx 需要
+bash scripts/check-prereq.sh  # 环境检查
 ```
 
-国内网络方案 → 见 `references/china-network.md`。
+### 3.（可选）登录 NotebookLM
+
+```bash
+notebooklm login   # 需要海外代理，见 references/china-network.md
+```
+
+> 不登录也可以用，NotebookLM 不可用时自动降级到本地 LLM（路径 B/C）。
 
 ### 4. 试跑
 
 ```
-（在 WorkBuddy 对话里）把这篇公众号文章生成播客并写入 IMA：
+（在 WorkBuddy 对话里）
+把这篇公众号文章深度分析并写入 IMA：
 https://mp.weixin.qq.com/s/Hu3LHuxqD4xaKEjox4lXyg
 ```
 
@@ -88,24 +77,24 @@ https://mp.weixin.qq.com/s/Hu3LHuxqD4xaKEjox4lXyg
 ## 文档地图
 
 ```
-anything-to-notebooklm-cn/
-├── SKILL.md                              # AI 入口（触发词 + 工作流）
-├── README.md                             # 你正在看的文件
+anything-to-notebooklm-cn/          # 独立 Skill，不需要上游
+├── SKILL.md                      # AI 入口（触发词 + 工作流）
+├── README.md                     # 你正在看的文件
 ├── references/
-│   ├── installation-cn.md                # 国内化安装详细步骤
-│   ├── china-network.md                  # 国内网络方案
-│   ├── tool-map.md                       # 工具能力地图（AI 调用前必读）
-│   ├── paywall-strategies-cn.md          # 付费墙国内重排
-│   └── troubleshooting.md                # 排错
-├── scenarios/                            # 5 个场景 SOP
+│   ├── installation-cn.md        # 国内化安装详细步骤
+│   ├── china-network.md          # 国内网络方案
+│   ├── tool-map.md               # 工具能力地图（AI 调用前必读）
+│   ├── honesty-rules.md           # 诚实度规范（核心差异化）
+│   ├── paywall-strategies-cn.md   # 付费墙国内重排
+│   └── troubleshooting.md        # 排错 + PPT 生成工具链
+├── scenarios/                    # 5 个场景 SOP
 │   ├── 01-wechat-to-ima.md
 │   ├── 02-xiaoyuzhou-to-feishu.md
 │   ├── 03-zsxq-to-mindmap.md
 │   ├── 04-caixin-to-podcast.md
 │   └── 05-shipinhao-to-ppt.md
 └── scripts/
-    ├── check-prereq.sh                   # 前置依赖检查
-    └── paywall-priority.json             # 付费墙优先级配置
+    └── check-prereq.sh          # 环境检查脚本
 ```
 
 ---
