@@ -40,21 +40,27 @@
   └─ 不可用 → 降级走 C 方案（本地 LLM）
 ```
 
-> ⚠️ **2026-05-21 更新**：CLI `notebooklm generate` 报 HTTP 400，改用 **Playwright 浏览器自动化**触发生成。
+> ⚠️ **2026-05-28 更新**：
+> - CLI `notebooklm generate` 报 HTTP 400，**生成环节改用 Playwright 浏览器自动化**。
+> - CLI `notebooklm source add-text` / `add-file` **完全不可用**（假成功或 HTTP 400），**上传环节改用 Playwright 浏览器自动化**。
+> - Playwright 脚本使用 **notebook 标题**（而非 CLI ID），因 CLI ID 与 Web URL ID 格式不一致。
+> - **9 种生成类型全部可用**（2026-05-28 实测验证）。
 
 ```
-[Step A1] 将 article.md 上传到 NotebookLM
-  notebooklm create "<文章标题>"
-  notebooklm source add-text <notebookId> "<文章标题>" --file article.md
-  ⚠️ 注意：add-file 命令有 HTTP 400 上传限制，请用 add-text --file 替代
+[Step A1] 将 article.md 上传到 NotebookLM（Playwright 浏览器上传）
+  node scripts/notebooklm-playwright.js upload-text "<notebook标题>" "<source标题>" "<content>"
+  # 脚本自动：打开笔记本 → 点击"添加来源" → "复制的文字" → 粘贴 → 插入
+  # ⚠️ 注意：CLI source add-text/add-file 均不可用，必须用 Playwright 上传
 
 [Step A2] 生成 Audio Overview（播客）
-  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  node scripts/notebooklm-playwright.js generate "<notebook标题>" audio [outputDir]
   # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
 
 [Step A3] 生成深度报告
-  node scripts/notebooklm-playwright.js <notebookId> report [outputDir]
-  # 点击"报告"标签 → 生成 → 等待完成
+  node scripts/notebooklm-playwright.js generate "<notebook标题>" report [outputDir]
+  # 点击"报告" → 等待完成
+
+# 支持的 generateType：audio | video | report | mindmap | flashcards | quiz | presentation | infographic | datatable
 ```
 
 ### 路径 B：C 方案（降级 fallback）

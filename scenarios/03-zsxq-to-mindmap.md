@@ -51,15 +51,11 @@
 ### 路径 A：NotebookLM 路径（推荐）
 
 ```
-[Step A1] 上传 NotebookLM
-  ├─ 创建 notebook（命名："<星球名>·<主题>"）
-  ├─ 把文本作为 source 上传
-  └─ 等待索引
+[Step A1] 上传 NotebookLM（Playwright 浏览器上传）
+  node scripts/notebooklm-playwright.js upload-text "<星球名>·<主题>" "<帖子标题>" "<content>"
 
-[Step A2] 调用 NotebookLM Mind Map 工具
-  node scripts/notebooklm-playwright.js <notebookId> mindmap [outputDir]
-  # 脚本自动：打开笔记本 → 点击"思维导图" → 等待生成完成
-  # 输出：截图结果到 outputDir/mindmap_result.png
+[Step A2] 生成 Mind Map
+  node scripts/notebooklm-playwright.js generate "<星球名>·<主题>" mindmap [outputDir]
 
 [Step A3] 转换为多格式
   ├─ JSON → Markdown 大纲（`-` 缩进）

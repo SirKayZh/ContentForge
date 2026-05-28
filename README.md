@@ -32,7 +32,7 @@
 ```bash
 mkdir -p ~/.workbuddy/skills/
 cd ~/.workbuddy/skills/
-git clone https://github.com/SirKayZh/neirong-gongfang
+git clone https://github.com/SirKayZh/ContentForge
 cd neirong-gongfang
 ```
 
@@ -102,7 +102,7 @@ neirong-gongfang/          # 独立 Skill
 ## License & Credits
 
 - **License**: MIT
-- **本作品**: [SirKayZh/neirong-gongfang](https://github.com/SirKayZh/neirong-gongfang)
+- **本作品**: [SirKayZh/ContentForge](https://github.com/SirKayZh/ContentForge)
 - **致谢上游**: [joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)（MIT）
 
 > 本 Skill 仅限个人学习研究使用，请尊重原作者版权，并支持优质媒体订阅。

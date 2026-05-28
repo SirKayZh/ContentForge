@@ -6,7 +6,7 @@ description: 把公众号/小宇宙播客/知识星球/财新/视频号/B站等�
 disable: false
 agent_created: true
 license: MIT
-version: 0.4.0
+version: 0.5.0
 ---
 
 # 内容工坊
@@ -36,10 +36,17 @@ version: 0.4.0
 
 **NotebookLM 可用性检测**：每次执行 Step 3 前先运行 `notebooklm status`，可用则走 NotebookLM路径；失败则自动降级到 C 方案（本地 LLM 直接生成），不影响产出。
 
-> ⚠️ **2026-05-21 重要更新**：CLI `notebooklm generate` 报 HTTP 400（API 版本问题），**生成环节改用 Playwright 浏览器自动化**：
-> - CLI 仍然用于：`login` / `list` / `create` / `source add-text`（上传功能正常）
-> - 生成改用：`scripts/notebooklm-playwright.js <notebookId> <audio|video|report|mindmap>`
-> - 脚本通过 Playwright 操控浏览器，点击"音频概览/视频概览/报告/思维导图"按钮，等生成完成后截图结果
+> ⚠️ **2026-05-28 重要更新**：CLI `notebooklm` 全功能不可用（`generate` HTTP 400、`source add-text` 假成功），**上传+生成全部改用 Playwright 浏览器自动化**：
+> - CLI 仅用于：`login`（获取 cookies）/ `list` / `create`
+> - 上传改用：`scripts/notebooklm-playwright.js upload-text "<notebook标题>" "<source标题>" "<content>"`
+> - 生成改用：`scripts/notebooklm-playwright.js generate "<notebook标题>" <audio\|video\|report\|mindmap\|flashcards\|quiz\|presentation\|infographic\|datatable>`
+> - 脚本通过 Playwright 操控浏览器完成全流程
+> 
+> 📋 **配额规则（2026-05-28 实测）**：
+> | 维度 | 类型 | 重置条件 |
+> |---|---|---|
+> | 🔴 账号级每日上限 | 音频、视频、报告 | 新 notebook 也无法重置（但 24h 滚动窗口后可用） |
+> | 🟢 notebook 级每日 1 次 | 思维导图、闪卡、测验、演示文稿、信息图、数据表格 | 新建 notebook 即重置 |
 
 匹配场景 → 读 `scenarios/0X-xxx.md` → 按 SOP 执行 → 失败走 `references/troubleshooting.md` 降级。
 
@@ -107,4 +114,4 @@ version: 0.4.0
 
 ## License & Credits
 
-MIT · 原创：[SirKayZh/neirong-gongfang](https://github.com/SirKayZh/neirong-gongfang) · 致谢上游：[joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)
+MIT · 原创：[SirKayZh/ContentForge](https://github.com/SirKayZh/ContentForge) · 致谢上游：[joeseesun/qiaomu-anything-to-notebooklm](https://github.com/joeseesun/qiaomu-anything-to-notebooklm)

@@ -84,13 +84,11 @@ Priority 5: 用户手动复制粘贴
   ├─ 财新长文常含图表 → 提取图片描述
   └─ 输出：clean_article.md
 
-[Step A2] 上传 NotebookLM
-  ├─ 创建 notebook（命名：财新·<文章标题>）
-  ├─ 添加 source
-  └─ 等待索引
+[Step A2] 上传 NotebookLM（Playwright 浏览器上传）
+  node scripts/notebooklm-playwright.js upload-text "财新·<文章标题>" "<文章标题>" "<content>"
 
 [Step A3] 生成 Audio Overview（核心）
-  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  node scripts/notebooklm-playwright.js generate "财新·<文章标题>" audio [outputDir]
   # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
   # 可选：添加自定义 prompt 文本
 

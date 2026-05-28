@@ -13,14 +13,14 @@ git --version       # 任意
 
 ## 1. 安装 Skill 文件
 
-Skill 由 AI 自动安装到 `~/.workbuddy/skills/neirong-gongfang/`，
+Skill 由 AI 自动安装到 `~/.workbuddy/skills/ContentForge/`，
 通常通过 Skill Hub 一键装或 git clone：
 
 ```bash
 mkdir -p ~/.workbuddy/skills/
 cd ~/.workbuddy/skills/
-git clone https://github.com/SirKayZh/neirong-gongfang
-cd neirong-gongfang
+git clone https://github.com/SirKayZh/ContentForge
+cd ContentForge
 ```
 
 ## 2. 安装核心依赖
@@ -72,7 +72,7 @@ notebooklm status
 ## 5. 环境检查
 
 ```bash
-cd ~/.workbuddy/skills/neirong-gongfang
+cd ~/.workbuddy/skills/ContentForge
 bash scripts/check-prereq.sh
 ```
 
@@ -98,6 +98,6 @@ source ~/.zshrc
 ## 卸载
 
 ```bash
-rm -rf ~/.workbuddy/skills/neirong-gongfang
+rm -rf ~/.workbuddy/skills/ContentForge
 # 协同 Skill 如不再需要，另删 lark-master / ima-skill
 ```

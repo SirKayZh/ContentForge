@@ -88,14 +88,12 @@ B 站 / 抖音 / 小红书视频则可以走标准 yt-dlp 路径。
   ├─ ffmpeg 抽音轨
   └─ Whisper / Get笔记 转写 → transcript.txt
 
-[Step A2] 上传 NotebookLM
-  ├─ source 1：transcript.txt
-  ├─ source 2：（可选）视频元数据（标题、UP 主、简介）
-  └─ 等待索引
+[Step A2] 上传 NotebookLM（Playwright 浏览器上传）
+  node scripts/notebooklm-playwright.js upload-text "<视频标题>" "transcript" "<content>"
 
-[Step A3] 生成 Slide Deck
-  node scripts/notebooklm-playwright.js <notebookId> video [outputDir]
-  # 脚本自动：打开笔记本 → 点击"演示文稿"标签 → 等待生成完成
+[Step A3] 生成演示文稿（Slide Deck）
+  node scripts/notebooklm-playwright.js generate "<视频标题>" presentation [outputDir]
+  # 脚本自动：打开笔记本 → 点击"演示文稿" → 等待生成完成
 
 [Step A4] 选配封面图（关键帧匹配）
   ├─ 每页根据时间戳从 frames/ 取最接近的关键帧

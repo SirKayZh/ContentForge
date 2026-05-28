@@ -57,12 +57,11 @@
 [Step A1] 写逐字稿为 .txt
   → 将转写稿或章节摘要写入 /tmp/podcast.txt
 
-[Step A2] 上传 NotebookLM
-  notebooklm create "<节目名> EP<集数>"
-  notebooklm source add /tmp/podcast.txt --title "<单集标题>"
+[Step A2] 上传 NotebookLM（Playwright 浏览器上传）
+  node scripts/notebooklm-playwright.js upload-text "<节目名> EP<集数>" "<单集标题>" "<content>"
 
 [Step A3] 生成 Audio Overview
-  node scripts/notebooklm-playwright.js <notebookId> audio [outputDir]
+  node scripts/notebooklm-playwright.js generate "<节目名> EP<集数>" audio [outputDir]
   # 脚本自动：打开笔记本 → 点击"音频概览" → 等待生成完成
 
 [Step A4] 落地同上（飞书 / IMA）

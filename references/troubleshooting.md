@@ -40,10 +40,20 @@ playwright install chromium
 
 | 错误 | 解决 |
 |---|---|
-| `not signed in` | 重跑 `notebooklm login` |
+| `not signed in` | 重跑 `notebooklm login`（获取 cookies 供 Playwright 使用） |
+| CLI `source add-text` 假成功/HTTP 400 | **CLI 上传已废弃**，改用 Playwright `upload-text` |
 | `quota exceeded` | NotebookLM 免费版每天 source 数有限，等待重置 |
 | `source too long` | 拆分文档（按章节切片） |
 | 一直转圈 | 网络问题，见 china-network.md |
+
+### NotebookLM 生成失败
+
+| 现象 | 解决 |
+|---|---|
+| CLI `generate` HTTP 400 | **CLI 生成已废弃**，改用 Playwright `generate` |
+| 点击后无反应（audio/video/report） | 24h 滚动窗口配额已满，等次日或换账号 |
+| 点击后无反应（mindmap/flashcards/quiz/presentation/infographic/datatable） | 该 notebook 今天已生成过此类型，新建 notebook 即可重置 |
+| 生成超时（>2min） | 正常，audio/video/report/presentation/infographic 生成较慢，后台仍在运行 |
 
 ### Get笔记 转写卡住
 
@@ -88,27 +98,15 @@ npx playwright install chromium
 npm install -g sharp
 ```
 
-### NotebookLM Audio Overview 报错
+### NotebookLM 生成质量调优
 
 | 现象 | 解决 |
 |---|---|
-| 生成中文播客但出现英文 | source 中混入英文，纯化 source |
-| 时长不可控 | 在自定义 prompt 中明确要求"~15 分钟" |
+| Audio Overview 出现英文 | source 中混入英文，纯化 source |
+| 音频时长不可控 | 在自定义 prompt 中明确要求"~15 分钟" |
 | 音色固定 | NotebookLM 暂不支持自定义音色，需 fallback 到 ChatTTS |
-
-### Mind Map JSON 太深
-
-NotebookLM 的 Mind Map 偶尔会生成 6-7 层深的树。本 Skill 默认裁剪到 4 层：
-
-```python
-# scripts/trim_mindmap.py
-def trim(node, max_depth=4, current=0):
-    if current >= max_depth:
-        node["children"] = []
-        return
-    for child in node.get("children", []):
-        trim(child, max_depth, current + 1)
-```
+| Mind Map JSON 太深 | NotebookLM 的 Mind Map 偶尔会生成 6-7 层深的树。本 Skill 默认裁剪到 4 层 |
+| Presentation 超时 | 演示文稿生成通常 >2min，属正常，后台仍在运行 |
 
 ## 落地阶段
 
